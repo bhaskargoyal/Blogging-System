@@ -27,6 +27,11 @@
 						echo '<p>'.'Full Name - '.$firstname.' '.$lastname.'</p>';
 						echo '<p>'.'Age - '.$age.'</p>';
 						echo '<p>'.'Username - '.$username.'</p>';
+						echo '<p><a href="editdetails.php">Edit Deltails</a> | <a href= "editpassword.php">Edit Password</a></p>';
+						if(isset($_SESSION['status'])){
+								echo '<br>'.'<h4>'.$_SESSION['status'].'</h4>';
+								unset($_SESSION['status']);
+						}
 						$query = "SELECT * FROM blogs WHERE user_id = ".$id.";";
 						$result = mysqli_query($con, $query);
 						if(mysqli_num_rows($result)  == 0){

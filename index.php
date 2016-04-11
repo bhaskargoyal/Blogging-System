@@ -1,10 +1,6 @@
 <?php
 	session_start();
 	require_once('./connect.php');
-	// if(isset($_SESSION['login']) && $_SESSION['login']){
-	// 	header("Location: home.php");
-	// 	exit();
-	// }
 	if(isset($_POST['submit'])){
 		// check for username and password
 		$username = $_POST['username'];
