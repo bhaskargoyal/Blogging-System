@@ -1,22 +1,15 @@
 <?php
 	session_start();
-	// require_once('');
-	if(isset($_SESSION['login']) && $_SESSION['login']){
-		header("Location: home.php");
-		exit();
-	}
+	require_once('./connect.php');
+	// if(isset($_SESSION['login']) && $_SESSION['login']){
+	// 	header("Location: home.php");
+	// 	exit();
+	// }
 	if(isset($_POST['submit'])){
 		// check for username and password
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 		// check from db
-		$con = mysqli_connect("localhost", "root", "", "blog");
-		if (!$con)
-		{
-			echo "Failed to connect to MySQL: " . mysqli_connect_error();
-		} else {
-			// echo "hello2";
-		}
 		$query = 'SELECT username, password FROM login WHERE username LIKE \''.$username.'\' AND password LIKE \''.$password.'\';';
 		$result = mysqli_query($con, $query);
 		if(mysqli_num_rows($result) == 1){
@@ -70,29 +63,26 @@
 	</center>
 	<!-- all blogs on db  -->
 	<?php
-		$con = mysqli_connect("localhost", "root", "", "blog");
-		if (!$con){
-			echo "Failed to connect to MySQL: " . mysqli_connect_error();
-		}
 		$query = "SELECT * FROM blogs;";
 		$result = mysqli_query($con, $query);
 		if($result == null){
 			echo "<h3>No Blogs Found</h3>";
+		} else {
+			while($row = mysqli_fetch_assoc($result)){
+				echo "<h2><a href=\"blog.php?blog=".$row['id']."\" target=\"_blank\">".$row['heading']."</a></h2>";
+				echo "<h3>".$row['subheading']."</h3>";
+				echo "<p class=\"truncate\">".$row['text']."</p>";
+				$query = 'SELECT firstname, lastname, age, username FROM users WHERE id = '.$row['user_id'].';';
+				$rre = mysqli_query($con, $query);
+				if(mysqli_num_rows($rre) == 1){
+					$rr = mysqli_fetch_assoc($rre);
+					echo "<p>Written by <b>".$rr['firstname']." ".$rr['lastname']."</b>, Age ".$rr['age'].".</p>";
+					echo "<p>".$row['time']."</p>";
+					echo "<br>";
+				} 
+			}
 		}
-		while($row = mysqli_fetch_assoc($result)){
-			echo "<h2>".$row['heading']."</h2>";
-			echo "<h3>".$row['subheading']."</h3>";
-			echo "<p class=\"truncate\">".$row['text']."</p>";
-			$query = 'SELECT firstname, lastname, age, username FROM users WHERE id = '.$row['user_id'].';';
-			$rre = mysqli_query($con, $query);
-			if(mysqli_num_rows($rre) == 1){
-				$rr = mysqli_fetch_assoc($rre);
-				echo "<p>Written by <b>".$rr['firstname']." ".$rr['lastname']."</b>, Age ".$rr['age'].".</p>";
-				echo "<p>".$row['time']."</p>";
-				echo "<br>";
-			} 
-		}
-
+		
 
 
 	?>
