@@ -42,10 +42,10 @@
 	<form method="post" action="index.php">
 		<br><br><br><center>
 		Username:
-		<input type= "text" name="username"/>
+		<input type= "text" name="username" required />
 		<br><br>
 		Password:
-		<input type="password" name="password"/>
+		<input type="password" name="password" required/>
 		<br><br>
 		<input type="submit" name="submit" value="Sign In">
 	</form>

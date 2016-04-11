@@ -18,7 +18,7 @@
 						header("Location: home.php");
 						exit();
 					} else {
-						$_SESSION['status'] = "Unsuccessfull update";
+						$_SESSION['status'] = "Unsuccessfull Update";
 						header("Location: home.php");
 						exit();
 					}

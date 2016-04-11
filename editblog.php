@@ -4,6 +4,7 @@
 	if(isset($_SESSION['login'])){
 		if($_SESSION['login']){
 			if(isset($_SESSION['username'])){
+
 				if(isset($_POST['submit'])){
 					$heading = $_POST['heading'];
 					$subheading = $_POST['subheading'];
@@ -12,18 +13,20 @@
 					$result1 = mysqli_query($con, $query);
 					$row = mysqli_fetch_assoc($result1);
 					$userid = $row['id'];
-					$query = "INSERT INTO blogs (heading, subheading, text, user_id) 
-							VALUES ('".$heading."', '".$subheading."', '".$text."', ".$userid.");";
-					$result2 = mysqli_query($con, $query);
-					if($result2 == True){
-						$_SESSION['status'] = "New Blog Created";
+					$query = "UPDATE blogs 
+							SET heading = '".$heading."', subheading = '".$subheading."', text = '".$text."' 
+							WHERE id =".$_SESSION['blogid']." AND user_id = ".$userid.";";
+					$result = mysqli_query($con, $query);
+					if($result == True){
+						$_SESSION['status'] = "Successfully Edited";
 						header("Location: home.php");
 						exit();
 					} else {
-						$_SESSION['status'] = "Internal Error3";
+						$_SESSION['status'] = "Unsuccessfull Edit";
 						header("Location: home.php");
 						exit();
 					}
+
 				} else {
 					// create a form
 					?>
@@ -36,16 +39,27 @@
 					<body>
 						<br><br>
 						<center>
-						<form method="post" action="newblog.php">
+						<?php
+							if(!isset($_GET['blog'])){
+								header("Location: home.php");
+								exit();
+							}
+							$_SESSION['blogid'] = $_GET['blog'];
+							$query = "SELECT * FROM blogs WHERE id = ".$_SESSION['blogid'].";";
+							$result = mysqli_query($con, $query);
+							$row = mysqli_fetch_assoc($result);
+						?>
+						<form method="post" action="editblog.php">
 							Title:
-							<input type= "text" name="heading" required/>
+							<input type= "text" name="heading" value="<?php echo $row['heading'];?>"required/>
 							<br><br>
 							Sub Heading:
-							<input type="text" name="subheading" required/>
+							<input type="text" name="subheading" value="<?php echo $row['subheading'];?>" required/>
 							<br><br>
 							Text:
 							<br>
-							<textarea cols="120" rows="20" name="text" required/></textarea>
+							<textarea cols="120" rows="20" name="text" required/><?php echo $row['text'];?>
+							</textarea>
 							<br>
 							<input type="submit" name="submit" value="Submit">
 						</form>
