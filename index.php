@@ -53,20 +53,22 @@
 		<br><br>
 		<input type="submit" name="submit" value="Sign In">
 	</form>
-	<br><br>
+	<br>
 	<h2><?php 
 		if(isset($_SESSION['wrong'])){
-			echo $_SESSION['wrong'];
+			echo '<br>'.'<h4>'.$_SESSION['wrong'].'</h4>';
 			unset($_SESSION['wrong']);
 		}
 	?></h2>
+	<br>
+	<h4><a href="newuser.php">New User</a></h4>
 	</center>
 	<!-- all blogs on db  -->
 	<?php
 		$query = "SELECT * FROM blogs;";
 		$result = mysqli_query($con, $query);
-		if($result == null){
-			echo "<h3>No Blogs Found</h3>";
+		if(mysqli_num_rows($result)  == 0){
+			echo "<br>"."<h3>No Blogs Found</h3>";
 		} else {
 			while($row = mysqli_fetch_assoc($result)){
 				echo "<h2><a href=\"blog.php?blog=".$row['id']."\" target=\"_blank\">".$row['heading']."</a></h2>";

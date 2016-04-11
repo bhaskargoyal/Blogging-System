@@ -29,8 +29,8 @@
 						echo '<p>'.'Username - '.$username.'</p>';
 						$query = "SELECT * FROM blogs WHERE user_id = ".$id.";";
 						$result = mysqli_query($con, $query);
-						if($result == null){
-							echo "<h3>No Blogs Found</h3>";
+						if(mysqli_num_rows($result)  == 0){
+							echo "<br>"."<h3>No Blogs Found</h3>";
 						} else {
 							echo "<br>";
 							while($row = mysqli_fetch_assoc($result)){
