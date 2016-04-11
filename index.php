@@ -18,11 +18,7 @@
 			// echo "hello2";
 		}
 		$query = 'SELECT username, password FROM login WHERE username LIKE \''.$username.'\' AND password LIKE \''.$password.'\';';
-		echo $query;
 		$result = mysqli_query($con, $query);
-		// echo "hello4";
-		// $result.toString();
-		// exit();
 		if(mysqli_num_rows($result) == 1){
 			$row = mysqli_fetch_assoc($result);
 			if($username == $row['username'] && $password == $row['password']){
@@ -72,6 +68,34 @@
 		}
 	?></h2>
 	</center>
+	<!-- all blogs on db  -->
+	<?php
+		$con = mysqli_connect("localhost", "root", "", "blog");
+		if (!$con){
+			echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+		$query = "SELECT * FROM blogs;";
+		$result = mysqli_query($con, $query);
+		if($result == null){
+			echo "<h3>No Blogs Found</h3>";
+		}
+		while($row = mysqli_fetch_assoc($result)){
+			echo "<h2>".$row['heading']."</h2>";
+			echo "<h3>".$row['subheading']."</h3>";
+			echo "<p class=\"truncate\">".$row['text']."</p>";
+			$query = 'SELECT firstname, lastname, age, username FROM users WHERE id = '.$row['user_id'].';';
+			$rre = mysqli_query($con, $query);
+			if(mysqli_num_rows($rre) == 1){
+				$rr = mysqli_fetch_assoc($rre);
+				echo "<p>Written by <b>".$rr['firstname']." ".$rr['lastname']."</b>, Age ".$rr['age'].".</p>";
+				echo "<p>".$row['time']."</p>";
+				echo "<br>";
+			} 
+		}
+
+
+
+	?>
 	<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>

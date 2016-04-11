@@ -2,3 +2,10 @@
 	margin: 0;
 	padding: 0;
 }
+
+.truncate {
+	width: 95%;
+  	white-space: nowrap;
+	overflow: hidden;
+  	text-overflow: ellipsis;
+}
