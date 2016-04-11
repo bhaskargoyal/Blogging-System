@@ -28,6 +28,7 @@
 						echo '<p>'.'Age - '.$age.'</p>';
 						echo '<p>'.'Username - '.$username.'</p>';
 						echo '<p><a href="editdetails.php">Edit Deltails</a> | <a href= "editpassword.php">Edit Password</a></p>';
+						echo '<p><a href="newblog.php">New Blog</a></p>';
 						if(isset($_SESSION['status'])){
 								echo '<br>'.'<h4>'.$_SESSION['status'].'</h4>';
 								unset($_SESSION['status']);
@@ -40,6 +41,7 @@
 							echo "<br>";
 							while($row = mysqli_fetch_assoc($result)){
 								echo "<h2><a href=\"blog.php?blog=".$row['id']."\" target=\"_blank\">".$row['heading']."</a></h2>";
+								echo '<h5><a href="editblog.php?blog='.$row['id'].'">edit</a> | <a href="deleteblog.php?blog='.$row['id'].'">delete</a></h5>';
 								echo "<h3>".$row['subheading']."</h3>";
 								echo "<p class=\"truncate\">".$row['text']."</p>";
 								$query = 'SELECT firstname, lastname, age, username FROM users WHERE id = '.$row['user_id'].';';

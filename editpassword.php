@@ -49,7 +49,7 @@
 					<!DOCtype html>
 					<html>
 					<head>
-						<title>Blogging System | Home Page</title>
+						<title>Blogging System | Edit Password</title>
 						<link rel = "stylesheet" href="css/style.css"/ type="text/css">
 					</head>
 					<body>
