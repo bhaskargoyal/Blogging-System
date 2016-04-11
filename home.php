@@ -18,6 +18,8 @@
 
 					}
 				?></h2>
+				<br><br>
+				<a href="logout.php">Logout</a>
 				</center>
 				<script type="text/javascript" src="js/script.js"></script>
 			</body>
@@ -26,6 +28,10 @@
 
 			<?php
 		}
+	} else {
+		$_SESSION['wrong'] = "You are logged out.";
+		header("Location: index.php");
+		exit();
 	}
 
 ?>
