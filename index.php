@@ -3,14 +3,14 @@
 	require_once('./connect.php');
 	if(isset($_POST['submit'])){
 		// check for username and password
-		$username = $_POST['username'];
+		$username = strtolower($_POST['username']);
 		$password = $_POST['password'];
 		// check from db
 		$query = 'SELECT username, password FROM login WHERE username LIKE \''.$username.'\' AND password LIKE \''.$password.'\';';
 		$result = mysqli_query($con, $query);
 		if(mysqli_num_rows($result) == 1){
 			$row = mysqli_fetch_assoc($result);
-			if($username == $row['username'] && $password == $row['password']){
+			if($username == strtolower($row['username']) && $password == $row['password']){
 				mysqli_close();
 				$_SESSION['wrong'] = "";
 				$_SESSION['login'] = 1;
