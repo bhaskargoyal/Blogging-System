@@ -46,31 +46,47 @@
 <head>
 	<title>Blogging System | New User</title>
 	<link rel = "stylesheet" href="css/style.css"/ type="text/css">
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<form method="post" action="newuser.php">
-		<br><br><br><center>
-		Username:
-		<input type="text" name="username" required/>
-		<br><br>
-		Password:
-		<input type="password" name="password" required/>
-		<br><br>
-		Confirm Password:
-		<input type="password" name="cpassword" required/>
-		<br><br>
-		First Name:
-		<input type= "text" name="firstname" required/>
-		<br><br>
-		Last Name:
-		<input type="text" name="lastname" required/>
-		<br><br>
-		Age:
-		<input type="text" name="age" required/>
-		<br><br>
-		<input type="submit" name="submit" value="Sign In">
-	</form>
-	<br>
+    <div id="newusertop"></div>
+    <h1 id="newuserheading">You are almost there.</h1>
+    <br><hr><br>
+    <div id="workingarea">
+        <form method="post" action="newuser.php">
+            <div class="container">
+                <form role="form" id="actualarea" method="post" action="index.php">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                    <input type="text" name="username" class="form-control" id="username" placeholder="Enter username"required />
+        </div>
+        <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" name="password" class="form-control" id="pwd" placeholder="Enter password" required/>
+        </div>
+        <div class="form-group">
+            <label for="pwd">Confirm Password:</label>
+            <input type="password" name="cpassword" class="form-control" id="pwd" placeholder="Confirm Password" required/>
+        </div>
+        <div class="form-group">
+        <label for="username">First Name:</label>
+            <input type="text" name="firstname" class="form-control" id="username" placeholder="Enter First Name"required />
+        </div>
+        <div class="form-group">
+        <label for="username">Last Name:</label>
+            <input type="text" name="lastname" class="form-control" id="username" placeholder="Enter Last Name"required />
+        </div>
+        <div class="form-group">
+        <label for="username">Age:</label>
+            <input type="text" name="age" class="form-control" id="username" placeholder="Enter age"required />
+        </div>
+        <button type="submit" name="submit" class="btn btn-primary" id="signbutton" value="Sign In">Sign in</button>
+	   </form>
+    </div>
 	<h2><?php 
 		if(isset($_SESSION['status'])){
 			echo '<br>'.'<h4>'.$_SESSION['status'].'</h4>';
