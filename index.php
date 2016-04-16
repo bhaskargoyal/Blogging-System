@@ -48,8 +48,8 @@
             <div id="signup"><button type="button" class="btn btn-default btn-block"><a href="newuser.php">New User</a></button></div>
         </div>
     <div id="area2">
-        <img src="images/message1.png" id="messageleft">
-        <img src="images/message1.png" id="messageright">
+        <img src="message1.png" id="messageleft">
+        <img src="message1.png" id="messageright">
     <div id="loginarea">
         <div class="container">
         <h2 id="heading">Registered user? Login!</h2>
