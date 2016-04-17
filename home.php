@@ -5,68 +5,124 @@
 		if($_SESSION['login']){
 			?>
 
-			<!DOCtype html>
-			<html>
-			<head>
-				<title>Blogging System | Home Page</title>
-				<link rel = "stylesheet" href="css/style.css"/ type="text/css">
-			</head>
-			<body>
-				<br><br>
-				<h2><?php 
-					if(isset($_SESSION['username'])){
-						$query = "SELECT id, firstname, lastname, age, username FROM users WHERE username='".$_SESSION['username']."'";
-						$result = mysqli_query($con, $query);
-						$row = mysqli_fetch_assoc($result);
-						$id = $row['id']; 
-						$username = $row['username'];
-						$age = $row['age'];
-						$firstname = $row['firstname'];
-						$lastname = $row['lastname'];
-						echo '<h2>'.'Welcome, '.$firstname.'</h2>';
-						echo '<p>'.'Full Name - '.$firstname.' '.$lastname.'</p>';
-						echo '<p>'.'Age - '.$age.'</p>';
-						echo '<p>'.'Username - '.$username.'</p>';
-						echo '<p><a href="editdetails.php">Edit Deltails</a> | <a href= "editpassword.php">Edit Password</a></p>';
-						echo '<p><a href="newblog.php">New Blog</a></p>';
-						if(isset($_SESSION['status'])){
-								echo '<br>'.'<h4>'.$_SESSION['status'].'</h4>';
-								unset($_SESSION['status']);
-						}
-						$query = "SELECT * FROM blogs WHERE user_id = ".$id.";";
-						$result = mysqli_query($con, $query);
-						if(mysqli_num_rows($result)  == 0){
-							echo "<br>"."<h3>No Blogs Found</h3>";
-						} else {
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:light" />
+	<link rel = "stylesheet" href="css/style.css" type="text/css">
+	<title>Blogging System | Home page</title>
+</head>
+<body>
+	<div class="container-fluid">
+		<div id="head-navbar">
+			<div id="logo" class="menu inline">
+				<h3 style="margin:0px;">Blogging System</h3>
+			</div>
+			<div class="menu inline pull-right">
+				<a class="btn btn-info" href="logout.php">Logout</a>
+			</div>
+		</div>
+		<section id="home-main" class="row">
+		<?php 
+			if(isset($_SESSION['username'])){
+				$query = "SELECT id, firstname, lastname, age, username FROM users WHERE username='".$_SESSION['username']."'";
+				$result = mysqli_query($con, $query);
+				$row = mysqli_fetch_assoc($result);
+				$id = $row['id']; 
+				$username = $row['username'];
+				$age = $row['age'];
+				$firstname = $row['firstname'];
+				$lastname = $row['lastname'];
+				?>
+
+				<div id="home-main-left" class="col-sm-8">
+				<div class="panel panel-default">
+				<div class="panel-heading">Main Section</div>
+				<div class="panel-body">
+				<h2>Welcome, <?php echo $firstname; ?></h2>
+				
+				
+
+				<?php
+				if(isset($_SESSION['status'])){
+						echo '<br><h4>'.$_SESSION['status'].'</h4>';
+						unset($_SESSION['status']);
+				}
+				$query = "SELECT * FROM blogs WHERE user_id = ".$id.";";
+				$result = mysqli_query($con, $query);
+				if(mysqli_num_rows($result)  == 0){
+					echo "<br><h3>No Blogs Found</h3>";
+				} else {
+					echo "<br>";
+					$count =0;
+					while($row = mysqli_fetch_assoc($result)){
+						$count = $count +1;
+						echo "<div class=\"panel panel-info\">";
+						echo "<div class='panel-heading'><span id='blog-heading'>".$row['heading']."</span></div>";
+						echo "<div class='panel-body'><h4>".$row['subheading']."</h4>";
+						echo "<p class=\"truncate panel-body\">".$row['text']."</p>";
+						$query = 'SELECT firstname, lastname, age, username FROM users WHERE id = '.$row['user_id'].';';
+						$rre = mysqli_query($con, $query);
+						if(mysqli_num_rows($rre) == 1){
+							$rr = mysqli_fetch_assoc($rre);
+							echo "<p>Written by <b>".$rr['firstname']." ".$rr['lastname']."</b>, Age ".$rr['age'].".</p>";
+							echo "<p>".$row['time']."</p>";
 							echo "<br>";
-							while($row = mysqli_fetch_assoc($result)){
-								echo "<h2><a href=\"blog.php?blog=".$row['id']."\" target=\"_blank\">".$row['heading']."</a></h2>";
-								echo '<h5><a href="editblog.php?blog='.$row['id'].'">edit</a> | <a href="deleteblog.php?blog='.$row['id'].'">delete</a></h5>';
-								echo "<h3>".$row['subheading']."</h3>";
-								echo "<p class=\"truncate\">".$row['text']."</p>";
-								$query = 'SELECT firstname, lastname, age, username FROM users WHERE id = '.$row['user_id'].';';
-								$rre = mysqli_query($con, $query);
-								if(mysqli_num_rows($rre) == 1){
-									$rr = mysqli_fetch_assoc($rre);
-									echo "<p>Written by <b>".$rr['firstname']." ".$rr['lastname']."</b>, Age ".$rr['age'].".</p>";
-									echo "<p>".$row['time']."</p>";
-									echo "<br>";
-								} 
-							}
-						}
-						
-
-
-					} else {
-						header("Location: logout.php");
-						exit();
+						} 
+						echo "<a class='btn btn-success' href=\"blog.php?blog=".$row['id']."\">Read More</a>";
+						echo "</div></div>";
 					}
-				?></h2>
-				<br><br>
-				<a href="logout.php">Logout</a>
-				<script type="text/javascript" src="js/script.js"></script>
-			</body>
-			</html>
+				}
+				
+				?>
+				</div>
+				</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="row">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								Write a New Blog
+							</div>
+							<div class="panel-body">
+								<p>Bring your mind to a peacefull yet mysterious journey.</p>
+								<p>Showcase what you are capable off.</p>
+								<p></p>
+								<p><a class="btn btn-danger" href="newblog.php">New Blog</a></p>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								Details
+							</div>
+							<div class="panel-body">
+								<p>Full Name - <?php echo $firstname.' '.$lastname;?></p>
+								<p>Age - <?php echo $age; ?></p>
+								<p>Username - <?php echo $username; ?></p>
+								<p><a href="editdetails.php">Edit Deltails</a> | <a href= "editpassword.php">Edit Password</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<?php
+
+			} else {
+				header("Location: logout.php");
+				exit();
+			}
+		?>
+		</section>
+		<footer>
+		</footer>
+	</div>
+	<script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
 
 
 			<?php

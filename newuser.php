@@ -41,85 +41,65 @@
 		} else {
 ?>
 
-<!DOCtype html>
+<!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:light" />
+	<link rel = "stylesheet" href="css/style.css" type="text/css">
 	<title>Blogging System | New User</title>
-	<link rel = "stylesheet" href="css/style.css"/ type="text/css">
-    <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div id="newusertop"></div>
-    <h1 id="newuserheading">You are almost there.</h1>
-    <br><hr><br>
-    <div id="workingarea">
-        <form method="post" action="newuser.php">
-            <div class="container">
-                <form role="form" id="actualarea" method="post" action="index.php">
-            <div class="form-group">
-                <label for="username">Username:</label>
-                    <input type="text" name="username" class="form-control" id="username" placeholder="Enter username"required />
-        </div>
-        <div class="form-group">
-            <label for="pwd">Password:</label>
-            <input type="password" name="password" class="form-control" id="pwd" placeholder="Enter password" required/>
-        </div>
-        <div class="form-group">
-            <label for="pwd">Confirm Password:</label>
-            <input type="password" name="cpassword" class="form-control" id="pwd" placeholder="Confirm Password" required/>
-        </div>
-        <div class="form-group">
-        <label for="username">First Name:</label>
-            <input type="text" name="firstname" class="form-control" id="username" placeholder="Enter First Name"required />
-        </div>
-        <div class="form-group">
-        <label for="username">Last Name:</label>
-            <input type="text" name="lastname" class="form-control" id="username" placeholder="Enter Last Name"required />
-        </div>
-        <div class="form-group">
-        <label for="username">Age:</label>
-            <input type="text" name="age" class="form-control" id="username" placeholder="Enter age"required />
-        </div>
-        <button type="submit" name="submit" class="btn btn-primary" id="signbutton" value="Sign In">Sign in</button>
-	   </form>
-    </div>
-	<h2><?php 
-		if(isset($_SESSION['status'])){
-			echo '<br>'.'<h4>'.$_SESSION['status'].'</h4>';
-			unset($_SESSION['status']);
-		}
-	?></h2>
-	<br>
-	</center>
-	<!-- all blogs on db  -->
-	<!-- <?php
-		$query = "SELECT * FROM blogs;";
-		$result = mysqli_query($con, $query);
-		if($result == null){
-			echo "<h3>No Blogs Found</h3>";
-		} else {
-			while($row = mysqli_fetch_assoc($result)){
-				echo "<h2><a href=\"blog.php?blog=".$row['id']."\" target=\"_blank\">".$row['heading']."</a></h2>";
-				echo "<h3>".$row['subheading']."</h3>";
-				echo "<p class=\"truncate\">".$row['text']."</p>";
-				$query = 'SELECT firstname, lastname, age, username FROM users WHERE id = '.$row['user_id'].';';
-				$rre = mysqli_query($con, $query);
-				if(mysqli_num_rows($rre) == 1){
-					$rr = mysqli_fetch_assoc($rre);
-					echo "<p>Written by <b>".$rr['firstname']." ".$rr['lastname']."</b>, Age ".$rr['age'].".</p>";
-					echo "<p>".$row['time']."</p>";
-					echo "<br>";
-				} 
-			}
-		}
-		
-
-
-	?> -->
+	<div class="container">
+		<div id="head-navbar">
+			<div id="logo" class="menu inline">
+				<h3 style="margin:0px;">Blogging System</h3>
+			</div>
+			<div class="menu inline pull-right">
+				<a class="btn btn-info" href="index.php">Sign In</a>
+			</div>
+		</div>
+    
+    <div id="signup" class="row">
+	    <div class="col-sm-6 col-sm-offset-3">
+	        <form method="post" action="newuser.php">
+	        <div class="form-group">
+	        <label for="username">First Name</label>
+	            <input type="text" name="firstname" class="form-control" id="username" placeholder="Enter First Name"required />
+	        </div>
+	        <div class="form-group">
+	        <label for="username">Last Name</label>
+	            <input type="text" name="lastname" class="form-control" id="username" placeholder="Enter Last Name"required />
+	        </div>
+	        <div class="form-group">
+	            <label for="username">Username </label>
+	            <input type="text" name="username" class="form-control" id="username" placeholder="Enter username"required />
+	        </div>
+	        <div class="form-group">
+	            <label for="pwd">Password</label>
+	            <input type="password" name="password" class="form-control" id="pwd" placeholder="Enter password" required/>
+	        </div>
+	        <div class="form-group">
+	            <label for="pwd">Confirm Password</label>
+	            <input type="password" name="cpassword" class="form-control" id="pwd" placeholder="Confirm Password" required/>
+	        </div>
+	        
+	        <div class="form-group">
+	        <label for="username">Age</label>
+	            <input type="text" name="age" class="form-control" id="username" placeholder="Enter age"required />
+	        </div>
+	        <button type="submit" name="submit" class="btn btn-primary" id="signbutton" value="Sign In">Create User</button>
+		   </form>
+			<?php 
+				if(isset($_SESSION['status'])){
+					echo '<h4>'.$_SESSION['status'].'</h4>';
+					unset($_SESSION['status']);
+				}
+			?>
+		</div>
+	</div>
 	<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>
