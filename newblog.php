@@ -27,30 +27,48 @@
 				} else {
 					// create a form
 					?>
-					<!DOCtype html>
-					<html>
-					<head>
-						<title>Blogging System | New Blog</title>
-						<link rel = "stylesheet" href="css/style.css"/ type="text/css">
-					</head>
-					<body>
-						<br><br>
-						<center>
+					<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:light" />
+	<link rel = "stylesheet" href="css/style.css" type="text/css">
+	<title>Blogging System | New Blog</title>
+</head>
+<body>
+	<div class="container">
+		<div id="head-navbar">
+			<div id="logo" class="menu inline">
+				<h3 style="margin:0px;">Blogging System</h3>
+			</div>
+			<div class="menu inline pull-right">
+				<a class="btn btn-info" href="home.php">Back</a>
+			</div>
+		</div>
+    
+	    <div class="row give-top-margin">
+			<div class="col-sm-8 col-sm-offset-2">
 						<form method="post" action="newblog.php">
-							Title:
-							<input type= "text" name="heading" required/>
-							<br><br>
-							Sub Heading:
-							<input type="text" name="subheading" required/>
-							<br><br>
-							Text:
-							<br>
-							<textarea cols="120" rows="20" name="text" required/></textarea>
-							<br>
-							<input type="submit" name="submit" value="Submit">
+							<div class="form-group">
+					        	<label for="select">Title</label>
+					            <input type="text" name="heading" class="form-control" placeholder="Enter Title" required />
+					        </div>
+					        <div class="form-group">
+					        	<label for="select">Sub Heading</label>
+					            <input type="text" name="subheading" class="form-control" placeholder="Enter Sub Heading" required />
+					        </div>
+					        <div class="form-group">
+							  <label for="comment">Text</label>
+							  <textarea class="form-control" rows="10" name="text"></textarea>
+							</div>
+							<button type="submit" name="submit" class="btn btn-primary" value="submit">Create Blog</button>
 						</form>
-						<br>
-						</center>
+							
+			</div>
+		</div>
+	</div>
 						<script type="text/javascript" src="js/script.js"></script>
 					</body>
 					</html>

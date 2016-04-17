@@ -3,7 +3,7 @@
 body {
 	font-family: "Open Sans";
 }
-
+ 
 .inline {
 	display: inline-block;
 }
@@ -27,10 +27,14 @@ body {
 
 
 #blog-heading {
-	font-size: 25px;
+	font-size: 20px;
 }
 
 #login {
+	margin-top: 20px;
+}
+
+.give-top-margin {
 	margin-top: 20px;
 }
 .center-text {

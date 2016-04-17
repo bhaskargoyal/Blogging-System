@@ -58,39 +58,39 @@
 				<h3 style="margin:0px;">Blogging System</h3>
 			</div>
 			<div class="menu inline pull-right">
-				<a class="btn btn-info" href="index.php">Sign In</a>
+				<a class="btn btn-info" href="index.php">Back</a>
 			</div>
 		</div>
     
-    <div id="signup" class="row">
+    <div class="row give-top-margin">
 	    <div class="col-sm-6 col-sm-offset-3">
 	        <form method="post" action="newuser.php">
 	        <div class="form-group">
 	        <label for="username">First Name</label>
-	            <input type="text" name="firstname" class="form-control" id="username" placeholder="Enter First Name"required />
+	            <input type="text" name="firstname" class="form-control" placeholder="Enter First Name"required />
 	        </div>
 	        <div class="form-group">
 	        <label for="username">Last Name</label>
-	            <input type="text" name="lastname" class="form-control" id="username" placeholder="Enter Last Name"required />
+	            <input type="text" name="lastname" class="form-control" placeholder="Enter Last Name"required />
 	        </div>
 	        <div class="form-group">
 	            <label for="username">Username </label>
-	            <input type="text" name="username" class="form-control" id="username" placeholder="Enter username"required />
+	            <input type="text" name="username" class="form-control" placeholder="Enter username"required />
 	        </div>
 	        <div class="form-group">
 	            <label for="pwd">Password</label>
-	            <input type="password" name="password" class="form-control" id="pwd" placeholder="Enter password" required/>
+	            <input type="password" name="password" class="form-control" placeholder="Enter password" required/>
 	        </div>
 	        <div class="form-group">
 	            <label for="pwd">Confirm Password</label>
-	            <input type="password" name="cpassword" class="form-control" id="pwd" placeholder="Confirm Password" required/>
+	            <input type="password" name="cpassword" class="form-control" placeholder="Confirm Password" required/>
 	        </div>
 	        
 	        <div class="form-group">
 	        <label for="username">Age</label>
-	            <input type="text" name="age" class="form-control" id="username" placeholder="Enter age"required />
+	            <input type="text" name="age" class="form-control" placeholder="Enter age"required />
 	        </div>
-	        <button type="submit" name="submit" class="btn btn-primary" id="signbutton" value="Sign In">Create User</button>
+	        <button type="submit" name="submit" class="btn btn-primary" value="create">Create User</button>
 		   </form>
 			<?php 
 				if(isset($_SESSION['status'])){

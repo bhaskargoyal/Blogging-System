@@ -93,6 +93,12 @@
 				}
 			?>
 			</div>
+			<div  style="position:absolute; bottom:0px; width: 98%;">
+				<img id="scroll-image" class="img-responsive center-block" src="images/scroll-down-arrow-small.png" height="20" width="20">
+				<!-- <img id="scroll-image-2" class="img-responsive center-block" src="images/scroll-down-arrow-small.png" height="20" width="20"> -->
+				<br>
+				<p class ="center-text">Scroll down, to read popular blogs</p>
+			</div>
 			
 		</div>
 		<section>

@@ -40,23 +40,25 @@
 
 				<div id="home-main-left" class="col-sm-8">
 				<div class="panel panel-default">
-				<div class="panel-heading">Main Section</div>
+				<div class="panel-heading"><?php echo $firstname; ?>'s Blogs</div>
 				<div class="panel-body">
-				<h2>Welcome, <?php echo $firstname; ?></h2>
-				
-				
 
 				<?php
 				if(isset($_SESSION['status'])){
-						echo '<br><h4>'.$_SESSION['status'].'</h4>';
+						$status = $_SESSION['status'];
 						unset($_SESSION['status']);
 				}
+				?>
+
+				<p><?php if(isset($status))echo "Status : ".$status; ?></p>
+
+				<?php
 				$query = "SELECT * FROM blogs WHERE user_id = ".$id.";";
 				$result = mysqli_query($con, $query);
 				if(mysqli_num_rows($result)  == 0){
-					echo "<br><h3>No Blogs Found</h3>";
+					echo "<h3>No Blogs Found</h3>";
 				} else {
-					echo "<br>";
+					
 					$count =0;
 					while($row = mysqli_fetch_assoc($result)){
 						$count = $count +1;
@@ -70,9 +72,12 @@
 							$rr = mysqli_fetch_assoc($rre);
 							echo "<p>Written by <b>".$rr['firstname']." ".$rr['lastname']."</b>, Age ".$rr['age'].".</p>";
 							echo "<p>".$row['time']."</p>";
-							echo "<br>";
+							
 						} 
-						echo "<a class='btn btn-success' href=\"blog.php?blog=".$row['id']."\">Read More</a>";
+
+						echo "<a class='btn btn-success' href=\"blog.php?blog=".$row['id']."\">Read More</a>&nbsp;";
+						echo '<a class=\'btn btn-success\' href="editblog.php?blog='.$row['id'].'">Edit</a>&nbsp;';
+						echo '<a class=\'btn btn-danger\' href="deleteblog.php?blog='.$row['id'].'">Delete</a>&nbsp;';
 						echo "</div></div>";
 					}
 				}
@@ -90,7 +95,6 @@
 							<div class="panel-body">
 								<p>Bring your mind to a peacefull yet mysterious journey.</p>
 								<p>Showcase what you are capable off.</p>
-								<p></p>
 								<p><a class="btn btn-danger" href="newblog.php">New Blog</a></p>
 							</div>
 						</div>
