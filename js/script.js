@@ -4,9 +4,7 @@ window.onload = function() {
 }
 
 function moveImage(scrollImage) {
-	console.log(scrollImage.style.marginBottom);
 	var newMargin = Number(scrollImage.style.marginBottom.slice(0,-2)) + -0.5;
-	console.log(newMargin);
 	if(newMargin <= -10) newMargin = 0;
 	scrollImage.style.marginBottom = newMargin + "px";
 }

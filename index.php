@@ -41,8 +41,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:light" />
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/opensanslight.css" />
 	<link rel = "stylesheet" href="css/style.css" type="text/css">
 	<title>Blogging System | Index Page</title>
 </head>
@@ -140,8 +140,8 @@
 		?>
 		</section>
 	</div>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+				<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>

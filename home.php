@@ -10,8 +10,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:light" />
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/opensanslight.css" />
 	<link rel = "stylesheet" href="css/style.css" type="text/css">
 	<title>Blogging System | Home page</title>
 </head>
@@ -108,7 +108,7 @@
 								<p>Full Name - <?php echo $firstname.' '.$lastname;?></p>
 								<p>Age - <?php echo $age; ?></p>
 								<p>Username - <?php echo $username; ?></p>
-								<p><a href="editdetails.php">Edit Deltails</a> | <a href= "editpassword.php">Edit Password</a></p>
+								<p><a href="editdetails.php">Edit Details</a> | <a href= "editpassword.php">Edit Password</a></p>
 							</div>
 						</div>
 					</div>
@@ -123,7 +123,9 @@
 		</section>
 		<footer>
 		</footer>
-	</div>
+	</div>		
+				<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>
